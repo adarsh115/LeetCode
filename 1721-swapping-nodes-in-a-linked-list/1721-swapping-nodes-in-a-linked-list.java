@@ -10,33 +10,23 @@
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
-        ListNode fast = head;
-        ListNode slow = head;
-        ListNode start = head;
-        ListNode second = head;
+        ListNode temp = head;
         
-		// Put fast (k-1) nodes after slow
-        for(int i = 0; i < k - 1; ++i)
-            fast = fast.next;
-            
-		// Save the node for swapping
-        start = fast;
-
-		// Move until the end of the list
-        while(fast.next != null) {
-			slow = slow.next;
-            fast = fast.next;
+        for(int  i = 0; i<k-1; i++){
+            temp = temp.next;
         }
         
-        // Save the second node for swapping
-		// Note that the pointer second isn't necessary: we could use slow for swapping as well
-		// However, having second improves readability
-        second = slow;
-		
-		// Swap values
-        int temp = start.val;
-        start.val = second.val;
-        second.val = temp;
+        ListNode first = temp;
+        ListNode second = head;
+        
+        while(temp.next != null){
+            second = second.next;
+            temp = temp.next;
+        }
+        
+        int tempdata = first.val;
+        first.val = second.val;
+        second.val = tempdata;
         
         return head;
     }
