@@ -25,10 +25,19 @@ class Solution {
                         ls.add(list);
                         
                         while(start < end && nums[start] == nums[start+1])start++;
-                        while(start < end && nums[end] == nums[end-1])end--;
-                        
-                        end--;
                         start++;
+/*                      eg
+//                      : 0 ,0 ,0, 1
+//                      while(nums[start] = nums[start+1])start++, i.e, while(nums[start] == 0)start++;
+                        loop will stop at lst zero, but we need to skip this last zero as well, hence 
+                        start++;
+                        same goes for end;
+                        and we are doing same thing for i and j; we are skipping duplicates in while loops
+
+*/
+                        while(start < end && nums[end] == nums[end-1])end--;
+                        end--;
+                       
                     }
                     else if(sum > (two_sum)){
                         end--;
