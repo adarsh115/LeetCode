@@ -5,6 +5,11 @@ class Solution {
         int i = 0;
         while(i<=t){
             if(nums[i] == 0){
+                if(nums[i] == 0 && nums[z] == 0){
+                    z++;
+                    i++;
+                    continue;
+                }
                 int temp = nums[z];
                 nums[z] = nums[i];
                 nums[i] = temp;
