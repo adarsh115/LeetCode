@@ -33,7 +33,7 @@ class Solution {
             s = s + (ch+"");
         }
         
-        return s;
+        return new String(c);
     }
 }
 
