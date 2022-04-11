@@ -37,21 +37,18 @@ class Solution{
         // code here
         int max = 0;
         int j = 0;
-        int windowSum = 0;
-        while(j < K){
-            windowSum += arr.get(j);
-            j++;
-        }
-        max = Math.max(max, windowSum);
         int i = 0;
-        while(j<N){
-            int currentSum = windowSum + arr.get(j)-arr.get(i);
-            max = Math.max(max, currentSum);
-            windowSum = currentSum;
-            j++;
-            i++;
+        int sum = 0;
+        while(j < N){
+            sum = sum + arr.get(j);
+            if(j-i+1 < K)j++;
+            else if(j-i+1 == K){
+                max = Math.max(sum, max);
+                sum = sum - arr.get(i);
+                i++;
+                j++;
+            }
         }
-        
         return max;
     }
 }
