@@ -104,8 +104,10 @@ class Solution {
         while (head != null && head2 != null) {
             ListNode tmp1 = head.next;
             ListNode tmp2 = head2.next;
-            head2.next = head.next;
+            
             head.next = head2;
+            head2.next = tmp1;
+            
             head = tmp1;
             head2 = tmp2;
         }
