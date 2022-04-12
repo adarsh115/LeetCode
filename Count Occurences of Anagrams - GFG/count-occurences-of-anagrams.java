@@ -28,10 +28,13 @@ class Solution {
 
     int search(String pat, String txt) {
         // code here
-        Map<Character,Integer>  map=new HashMap<>();
+        HashMap <Character,Integer> map = new HashMap<>();
         
-        for(int k=0;k<pat.length();k++){
+        for(int k=0; k<pat.length(); k++){
+            
             map.put(pat.charAt(k),
+            // If map doesn't contains character then it count will be zero and +1
+            // If it contains that character then its count will be get(char)+1
             map.getOrDefault(pat.charAt(k),0)+1);
             
         }
@@ -44,25 +47,23 @@ class Solution {
         while(j<n){
             
             char temp = txt.charAt(j);
+            
             if(map.containsKey(temp)){
                 map.put(temp,map.get(temp)-1);
-                if(map.get(temp)==0){
-                    count--;
-                }
+                
+                if(map.get(temp)==0)count--;
             }
             
-            if(j-i+1<k){
-                j++;
-            }
+            if(j-i+1 < k) j++;
             
-            else if(j-i+1==k)
+            else if(j-i+1 == k)
             {
                 if(count == 0)occurences++;
                 
-                char x=txt.charAt(i);
+                char x = txt.charAt(i);
                 
                 if(map.containsKey(x)){
-                    map.put(x,map.get(x)+1);
+                    map.put(x,map.get(x) + 1);
                     if(map.get(x) == 1) count++;
                     
                     i++;
