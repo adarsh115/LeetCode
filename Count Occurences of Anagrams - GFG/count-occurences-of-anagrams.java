@@ -53,18 +53,22 @@ class Solution {
             
             if(j-i+1<k){
                 j++;
-            }else if(j-i+1==k){
-                if(count==0){
-                    occurences++;
-                }
+            }
+            
+            else if(j-i+1==k)
+            {
+                if(count == 0)occurences++;
+                
                 char x=txt.charAt(i);
+                
                 if(map.containsKey(x)){
-                    if(map.get(x)==0) count++;
-                    
                     map.put(x,map.get(x)+1);
+                    if(map.get(x) == 1) count++;
+                    
                     i++;
                     j++;
-                }else{
+                }
+                else{
                     i++;
                     j++;
                 }
