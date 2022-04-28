@@ -15,13 +15,13 @@
  */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-                List<List<Integer>> zigzag = new ArrayList<>();
+        List<List<Integer>> zigzag = new ArrayList<>();
         Queue<TreeNode> q = new LinkedList<>();
         
         if(root == null)return zigzag;
         
         q.add(root);
-        boolean flag = true;
+        
         while(q.size() > 0){
             int size = q.size();
             List<Integer> level = new ArrayList<>();
@@ -35,14 +35,10 @@ class Solution {
                 
                 size--;
             }
-            if(flag){
-               zigzag.add(level); 
-            }
-            else{
+
                 
                 zigzag.add(level); 
-            }
-            flag = !flag;
+
         }
         Collections.reverse(zigzag);
         return zigzag;
