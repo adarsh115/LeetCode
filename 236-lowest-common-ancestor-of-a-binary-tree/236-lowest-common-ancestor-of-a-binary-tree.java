@@ -15,10 +15,9 @@ class Solution {
         TreeNode left = solve(root.left, p, q);
         TreeNode right = solve(root.right, p, q);
         
-        if(left != null && right != null)return root;
-        else if(left == null && right != null)return right;
-        else if(left != null && right == null)return left;
-        else return null;      
+        if(left == null)return right;
+        if(right == null)return left;
+        return root;    
         
     }
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
