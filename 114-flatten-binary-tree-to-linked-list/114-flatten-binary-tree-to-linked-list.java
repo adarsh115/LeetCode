@@ -26,20 +26,21 @@ class Solution {
         ArrayList<Integer> list = new ArrayList<>();
         preorder(root, list);
         
-        System.out.print(list);
+        // System.out.print(list);
         
         // TreeNode rt = new TreeNode(list.get(0));
-        TreeNode current = root;
+        TreeNode curr = root;
         
         for(int i=1; i<list.size(); i++){
             TreeNode temp = new TreeNode(list.get(i));
-            current.right = temp;
-            current.left = null;
-            current = current.right;
+            curr.right = temp;
+            curr.left = null;
+            curr = temp;
+            // System.out.print(rt.val + " " + "rt");
         }
-        current.left = null;
-        current.right = null;
+        curr.left = null;
+        curr.right = null;
         
-        // root = rt;
+        root = curr;
     }
 }
