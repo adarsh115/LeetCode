@@ -28,7 +28,7 @@ class Solution {
         
         System.out.print(list);
         
-        TreeNode rt = new TreeNode(list.get(0));
+        // TreeNode rt = new TreeNode(list.get(0));
         TreeNode current = root;
         
         for(int i=1; i<list.size(); i++){
@@ -40,6 +40,6 @@ class Solution {
         current.left = null;
         current.right = null;
         
-        root = rt;
+        // root = rt;
     }
 }
