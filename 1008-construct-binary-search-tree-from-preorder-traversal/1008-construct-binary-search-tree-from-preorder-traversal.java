@@ -16,7 +16,7 @@
 class Solution {
     int i = 0;
     public TreeNode solve(int[] preorder, int min, int max){
-        if(i >= preorder.length )return null;
+        if(i >= preorder.length || preorder[i] > max)return null;
         if(preorder[i] < min || preorder[i] > max)return null;
         
         TreeNode root = new TreeNode(preorder[i++]);
