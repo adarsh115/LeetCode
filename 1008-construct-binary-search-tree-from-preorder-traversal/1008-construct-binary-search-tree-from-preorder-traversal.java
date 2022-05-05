@@ -15,20 +15,20 @@
  */
 class Solution {
     int i = 0;
-    public TreeNode solve(int[] preorder, int min, int max){
-        if(i >= preorder.length)return null;
-        if(preorder[i] < min || preorder[i] > max)return null;
+    public TreeNode solve(int[] preorder,  int max){
+        if(i >= preorder.length || preorder[i] > max)return null;
+        // if(preorder[i] < min || preorder[i] > max)return null;
         
         TreeNode root = new TreeNode(preorder[i++]);
         
-        root.left = solve(preorder, min,  root.val);
-        root.right = solve(preorder, root.val,  max);
+        root.left = solve(preorder, root.val);
+        root.right = solve(preorder, max);
         
         return root;
         
     }
     public TreeNode bstFromPreorder(int[] preorder) {
         
-        return solve(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return solve(preorder,  Integer.MAX_VALUE);
     }
 }
