@@ -61,23 +61,43 @@ class GFG {
 class Solution {
     public static int kthLargest(int N, int K, int[] Arr) {
         // code here
-        ArrayList<Integer> list = new ArrayList<>();
+        // ArrayList<Integer> list = new ArrayList<>();
         
+        // int sum = 0;
+        // for(int i = 0; i<N; i++){
+        //     sum = 0;
+        //     for(int j = i; j<N; j++){
+        //         sum += Arr[j];
+        //         list.add(sum);
+        //     }
+            
+        // }
+        
+        // Collections.sort(list, Collections.reverseOrder());
+        // // Collections.reverse(list);
+        // // System.out.println(list);
+        
+        // return list.get(K-1);
+        
+        Queue<Integer> minheap = new PriorityQueue<>();
         int sum = 0;
         for(int i = 0; i<N; i++){
             sum = 0;
             for(int j = i; j<N; j++){
                 sum += Arr[j];
-                list.add(sum);
+                
+                if(minheap.size() < K)minheap.add(sum);
+                else{
+                    if(sum > minheap.peek()){
+                        minheap.remove();
+                        minheap.add(sum);
+                    }
+                }
             }
             
         }
         
-        Collections.sort(list, Collections.reverseOrder());
-        // Collections.reverse(list);
-        // System.out.println(list);
-        
-        return list.get(K-1);
+        return minheap.peek();
     }
 }
         
