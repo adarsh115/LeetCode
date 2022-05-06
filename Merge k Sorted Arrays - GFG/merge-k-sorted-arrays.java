@@ -37,11 +37,11 @@ class Solution
     public static ArrayList<Integer> mergeKArrays(int[][] arr,int K) 
     {
         // Write your code here.
-        Queue<Integer> q = new PriorityQueue<>();
+        // Queue<Integer> q = new PriorityQueue<>();
         
         ArrayList<Integer> list = new ArrayList<>();
         for(int i = 0; i<K; i++){
-            for(int j = 0; j<arr[i].length; j++){
+            for(int j = 0; j<K; j++){
                 list.add(arr[i][j]);
             }
         }
