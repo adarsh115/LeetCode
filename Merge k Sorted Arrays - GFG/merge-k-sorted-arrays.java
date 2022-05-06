@@ -39,18 +39,18 @@ class Solution
         // Write your code here.
         Queue<Integer> q = new PriorityQueue<>();
         
+        ArrayList<Integer> list = new ArrayList<>();
         for(int i = 0; i<K; i++){
             for(int j = 0; j<arr[i].length; j++){
-                q.add(arr[i][j]);
+                list.add(arr[i][j]);
             }
         }
-        ArrayList<Integer> list = new ArrayList<>();
         
-        while(q.size() > 0){
-            list.add(q.peek());
-            q.remove();
-        }
-        
+        // while(q.size() > 0){
+        //     list.add(q.peek());
+        //     q.remove();
+        // }
+        Collections.sort(list);
         return list;
         
     }
