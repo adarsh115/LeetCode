@@ -42,15 +42,15 @@ class Solution
         ArrayList<Integer> list = new ArrayList<>();
         for(int i = 0; i<K; i++){
             for(int j = 0; j<arr[i].length; j++){
-                list.add(arr[i][j]);
+                q.add(arr[i][j]);
             }
         }
         
-        // while(q.size() > 0){
-        //     list.add(q.peek());
-        //     q.remove();
-        // }
-        Collections.sort(list);
+        while(q.size() > 0){
+            list.add(q.peek());
+            q.remove();
+        }
+        // Collections.sort(list);
         return list;
         
     }
