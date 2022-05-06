@@ -73,8 +73,8 @@ class Solution {
             
         }
         
-        Collections.sort(list);
-        Collections.reverse(list);
+        Collections.sort(list, Collections.reverseOrder());
+        // Collections.reverse(list);
         // System.out.println(list);
         
         return list.get(K-1);
