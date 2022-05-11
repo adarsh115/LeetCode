@@ -2,16 +2,16 @@ class Solution {
     public boolean bfsCheck(int graph[][], int node, int color[]){
         Queue<Integer> q = new LinkedList<>();
 
-        color[node] = 1;
-                
+        color[node] = 1;     
         q.add(node);
         
 
-        
         while(!q.isEmpty()){
+            
             int parent = q.remove();
             
             for(int child : graph[parent]){
+                
                 if(color[child] == -1){
                     color[child] = 1-color[parent];
                     q.add(child);
@@ -20,31 +20,12 @@ class Solution {
             }
         }
         
-        return true;
-       
+        return true; 
     }
-//     public boolean bfsCheck(int graph[][], int node, int color[]){
-//         Queue<Integer> q = new LinkedList<>();
-//         q.add(node);
-        
-//         color[node] = 1;
-        
-//         while(!q.isEmpty()){
-//             int temp = q.remove();
-//             for(int it: graph[temp]){
-//                 if(color[it] == -1){
-//                     color[it] = 1-color[temp];
-//                     q.add(it);
-//                 }
-//                 else if(color[it] == color[temp])return false;
-//             }
-//         }
-        
-//         return true;
-//     }
+
     
     public boolean isBipartite(int[][] graph) {
-       int n = graph.length;
+        int n = graph.length;
         
         int color[] = new int[n];
         
