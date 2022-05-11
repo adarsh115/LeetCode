@@ -21,24 +21,24 @@ class Solution {
        
 //     }
     
-//     public boolean isBipartite(int[][] graph) {
-//        int n = graph.length;
+    public boolean isBipartite(int[][] graph) {
+       int n = graph.length;
         
-//         int color[] = new int[n];
+        int color[] = new int[n];
         
-//         Arrays.fill(color, -1);
+        Arrays.fill(color, -1);
         
-//         for(int i=0; i<n; i++){
-//             if(color[i] == -1){
-//                 boolean ans = bfsCheck(graph, i, color);
+        for(int i=0; i<n; i++){
+            if(color[i] == -1){
+                boolean ans = bfsCheck(graph, i, color);
                 
-//                 if(ans == false)return false;
-//             }
-//         }
+                if(ans == false)return false;
+            }
+        }
         
-//         return true;
+        return true;
         
-//     }
+    }
         public boolean bfsCheck(int graph[][], int node, int color[]){
         Queue<Integer> q = new LinkedList<>();
         q.add(node);
@@ -59,20 +59,20 @@ class Solution {
         return true;
     }
     
-    public boolean isBipartite(int[][] graph) {
-        int n = graph.length;
-        int color[] = new int[n];
+//     public boolean isBipartite(int[][] graph) {
+//         int n = graph.length;
+//         int color[] = new int[n];
         
-        Arrays.fill(color, -1);
+//         Arrays.fill(color, -1);
         
-        for(int i=0; i<n; i++){
-            if(color[i] == -1){
-                boolean ans = bfsCheck(graph, i, color);
-                // System.out.print(ans);
-                if(ans == false)return false;
-            }
-        }
-        return true;
+//         for(int i=0; i<n; i++){
+//             if(color[i] == -1){
+//                 boolean ans = bfsCheck(graph, i, color);
+//                 // System.out.print(ans);
+//                 if(ans == false)return false;
+//             }
+//         }
+//         return true;
         
-    }
+//     }
 }
