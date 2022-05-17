@@ -35,6 +35,7 @@ class Solution{
 	 m = s2.length();
 		
 		int dp[][] = new int[n+1][m+1];
+		int lcs = 0;
 // 		int common = 0;
 		for(int i = 0; i<n+1; i++){
 			for(int j = 0; j<m+1; j++){
@@ -50,14 +51,11 @@ class Solution{
 				}
 				else  
 					dp[i][j] = 0; 
+					
+				lcs = Math.max(lcs,dp[i][j]);
 			}
 		}
-		int lcs = 0;
-        for(int i=0;i<n+1;i++){
-            for(int j=0;j<m+1;j++){
-                lcs = Math.max(lcs,dp[i][j]);
-            }
-        }
+
 		return lcs;
     }
 }
