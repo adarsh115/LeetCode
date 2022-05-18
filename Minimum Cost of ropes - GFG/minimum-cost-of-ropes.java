@@ -65,23 +65,25 @@ class Solution
     long minCost(long arr[], int n) 
     {
         // your code here
-        Queue<Long> q = new PriorityQueue<>();
-        for(long x: arr){
-            q.add(x);
-        }
-        long cost = 0;
-        long sum = 0;
-        while(q.size()>1){
-            long a = q.remove();
-            long b = q.remove();
-            
-            sum = a + b;
-            
-            q.add(sum);
-            
-            cost += sum;
-        }
-        
-        return cost;
+       Queue<Long> q = new PriorityQueue<>();
+       
+       for(long N : arr){
+           q.add(N);
+       }
+       
+       long cost = 0;
+       while(q.size() > 1){
+           long first = q.remove();
+           long second = q.remove();
+           
+           long sum = first + second;
+           cost += sum;
+           
+           q.add(sum);
+       }
+       
+       return cost;
+       
+       
     }
 }
