@@ -18,7 +18,7 @@ class Solution {
         int max = 0;
         int current = 0;
         
-        int top = q.poll();
+        int top = q.remove();
         current++;
         max = Math.max(current, max);
         
@@ -30,7 +30,7 @@ class Solution {
             else{
                 current = 1;
             }
-            top = q.poll();
+            top = q.remove();
         }
         
         return max;
