@@ -2,13 +2,13 @@ class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> list = new ArrayList<>();
         
-        if(strs.length <= 1){
-            List<String> temp = new ArrayList<>();
-            temp.add(strs[0]);
-            list.add(temp);
+//         if(strs.length <= 1){
+//             List<String> temp = new ArrayList<>();
+//             temp.add(strs[0]);
+//             list.add(temp);
             
-            return list;
-        }
+//             return list;
+//         }
         
         HashMap<String, List<String> > map = new HashMap<>();
         for(String str : strs){
