@@ -1,41 +1,40 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> ls = new ArrayList();
+        List<List<Integer>> list = new ArrayList<>();
+        if(nums.length < 3)return list;
         
-        if(nums.length < 3)return ls;
-        int n = nums.length;
-        Arrays.sort(nums);
+        int a = 0;
+		Arrays.sort(nums);
         
-        for(int i = 0; i< n-2; i++){
-            
-            if(i == 0 || nums[i] != nums[i-1]){
-                int start = i+1;
-                int end = n-1;
-                while(start < end){
-                    int sum = nums[start] + nums[end];
-                    if(sum == -(nums[i])){
-                        List <Integer> list = new ArrayList();
-                        list.add(nums[i]);
-                        list.add(nums[start]);
-                        list.add(nums[end]);
-                        // System.out.print(list);
-                        ls.add(list);
+        while(a <= nums.length - 3){
+//          if the number is at 0 or number is at not zero but also number is not equal to previous number
+            if(a == 0 || (a > 0 && nums[a] !=nums[a-1])){
+                int b = a+1;
+                int c = nums.length-1;
+                
+                int target = 0-nums[a];
+                while(b < c){
+                    int sum = nums[b] + nums[c];
+                    
+                    if(sum == target){
                         
-                        while(start < end && nums[start] == nums[start+1])start++;
-                        while(start < end && nums[end] == nums[end-1])end--;
+                        List<Integer> numbers = new ArrayList<>();
+                        Collections.addAll(numbers, nums[a], nums[b], nums[c]);
+                        list.add(numbers);
                         
-                        end--;
-                        start++;
+                        while(b<c && nums[b] == nums[b+1])b++;
+						while(b<c && nums[c] == nums[c-1])c--;
+                        
+                        b++;
+                        c--;
                     }
-                    else if(sum > -(nums[i])){
-                        end--;
-                    }
-                    else start++;
-                }
+                    else if(sum > target)c--;
+                    else b++;
+                }  
             }
-
+            
+            a++;
         }
-        
-        return ls;
+        return list;
     }
 }
