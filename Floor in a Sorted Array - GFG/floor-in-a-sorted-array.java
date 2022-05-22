@@ -46,7 +46,7 @@ class Solution{
         int e = n-1;
         int ans =  -1;
         
-        while(s < e){
+        while(s <= e){
             int mid = s + (e-s)/2;
             
             if(nums[mid] == target)return mid;
