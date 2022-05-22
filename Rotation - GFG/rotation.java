@@ -45,7 +45,7 @@ class Solution {
             else if(arr[mid] >= arr[0]){
                 s = mid+1;
             }
-            else if(arr[mid] < arr[end]){
+            else if(arr[mid] <= arr[end]){
                 e = mid-1;
             }
         }
