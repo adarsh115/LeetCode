@@ -55,9 +55,10 @@ class Solution {
     int findKRotation(int arr[], int n) {
         // code here
         if(n == 0)return 0;
-        if(arr[0] < arr[n-1])return 0;
+        // if(arr[0] < arr[n-1])return 0;
+        
         int minindex = findmin(arr, n);
         
-        return minindex;
+        return minindex == -1 ? 0 : minindex;
     }
 }
