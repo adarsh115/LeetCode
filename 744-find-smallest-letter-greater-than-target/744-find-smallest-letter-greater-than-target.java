@@ -6,6 +6,7 @@ class Solution {
         char ans = ' ';
         
         if(letters[letters.length-1] <= target)return letters[0];
+        
         while(start <= end){
             int mid = start + (end - start)/2;
             
