@@ -1,20 +1,24 @@
 class Solution {
-    public void solve(int arr[], int index, int target, List<List<Integer>> ans, List<Integer> list){
+    public boolean solve(int arr[], int index, int target, List<List<Integer>> ans, List<Integer> list){
         if(target == 0){
             ans.add(new ArrayList(list));
-            return;
+            return true;
         }
+        if(target < 0)return true;
         
         for(int i = index; i < arr.length; i++){
             if(i > index && arr[i] == arr[i-1])continue;
             
-            if(arr[i] > target)break;
+            
             
             list.add(arr[i]);
-            solve(arr, i + 1, target - arr[i], ans, list);
+            boolean current = solve(arr, i + 1, target - arr[i], ans, list);
             list.remove(list.size() - 1);
             
+            if(current)break;
         }
+        
+        return false;
     }
     
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
