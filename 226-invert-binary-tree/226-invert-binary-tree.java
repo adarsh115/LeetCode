@@ -14,19 +14,35 @@
  * }
  */
 class Solution {
-    public TreeNode solve(TreeNode root){
-        if(root == null)return  null;
-        TreeNode left = solve(root.left);
-        TreeNode right = solve(root.right);
+//     public TreeNode solve(TreeNode root){
+//         if(root == null)return  null;
+//         TreeNode left = solve(root.left);
+//         TreeNode right = solve(root.right);
         
-        root.left = right;
-        root.right = left;
+//         root.left = right;
+//         root.right = left;
         
-        return root;
-    }
+//         return root;
+//     }
     public TreeNode invertTree(TreeNode root) {
         if(root == null || root.right == null && root.left == null)return root;
-        solve(root);
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            TreeNode temp = q.remove();
+            
+            if(temp.left != null)q.add(temp.left);
+            if(temp.right != null)q.add(temp.right);
+            
+            TreeNode left = temp.left;
+            TreeNode right = temp.right;
+            
+            temp.left = right;
+            temp.right = left;
+            
+        }
         
         return root;
     }
