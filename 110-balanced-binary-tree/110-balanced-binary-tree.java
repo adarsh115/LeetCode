@@ -14,19 +14,23 @@
  * }
  */
 class Solution {
-    public int check(TreeNode root){
+    int height_difference;
+    int solve(TreeNode root){
         if(root == null)return 0;
         
-        int left = check(root.left);
-        int right = check(root.right);
+        int left = solve(root.left);
+        int right = solve(root.right);
         
-        if(left == -1 || right == -1)return -1;
-        if(Math.abs(left-right) > 1)return -1;
+        height_difference = Math.max(height_difference, Math.abs(left - right));
         
-        return 1 + Math.max(left , right);
         
+        return 1 + Math.max(left, right);
     }
     public boolean isBalanced(TreeNode root) {
-        return check(root) != -1;
+        height_difference = Integer.MIN_VALUE;
+            
+        solve(root);
+        System.out.print(height_difference);
+        return !(height_difference > 1);
     }
 }
