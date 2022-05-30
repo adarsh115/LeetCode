@@ -14,17 +14,8 @@
  * }
  */
 class Solution {
-    public boolean solve(TreeNode root, int lb, int ub){
-        if(root == null)return true;
-        
-        if(!(root.val <= ub && root.val >= lb))return false;
-        
-        boolean left = solve(root.left, lb, root.val);
-        boolean right = solve(root.right, root.val, ub);
-            
-        return left && right;
-    }
-        private boolean dfs(TreeNode root, Integer min, Integer max) {
+
+    private boolean dfs(TreeNode root, Integer min, Integer max) {
         if (root == null) return true;
 
         if ((min != null && root.val <= min) || max != null && root.val >= max) {
@@ -34,27 +25,27 @@ class Solution {
         return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
 
     }
-    public boolean isValidBST(TreeNode root) {
-        if(root == null)return true;
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode pre = null;
+//     public boolean isValidBST(TreeNode root) {
+//         if(root == null)return true;
+//         Stack<TreeNode> stack = new Stack<>();
+//         TreeNode pre = null;
         
-        while(root != null || !stack.isEmpty()){
-            while(root != null){
-                stack.push(root);
-                root = root.left;
-            }
+//         while(root != null || !stack.isEmpty()){
+//             while(root != null){
+//                 stack.push(root);
+//                 root = root.left;
+//             }
             
-            root = stack.pop();
+//             root = stack.pop();
             
-            if(pre != null && root.val <= pre.val)return false;
+//             if(pre != null && root.val <= pre.val)return false;
             
-            pre = root;
-            root = root.right;
-        }
-        return true;
+//             pre = root;
+//             root = root.right;
+//         }
+//         return true;
+//     }
+    public boolean isValidBST(TreeNode root) {
+        return dfs(root, null, null);
     }
-    // public boolean isValidBST(TreeNode root) {
-    //     return dfs(root, null, null);
-    // }
 }
