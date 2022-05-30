@@ -14,24 +14,27 @@
  * }
  */
 class Solution {
-    public boolean isValidBST(TreeNode root) {
+    public boolean solve(TreeNode root, int lb, int ub){
         if(root == null)return true;
         
-        Stack<TreeNode> s = new Stack<>();
-        TreeNode prev = null;
-        while(root != null || !s.isEmpty()){
-            while(root != null){
-                s.push(root);
-                root = root.left;
-            }
-            
-            root = s.pop();
-            if(prev != null && root.val <= prev.val)return false;
-            
-            prev = root;
-            root = root.right;
-        }
+        if(!(root.val <= ub && root.val >= lb))return false;
         
-        return true;
+        boolean left = solve(root.left, lb, root.val);
+        boolean right = solve(root.right, root.val, ub);
+            
+        return left && right;
+    }
+        private boolean dfs(TreeNode root, Integer min, Integer max) {
+        if (root == null) return true;
+
+        if ((min != null && root.val <= min) || max != null && root.val >= max) {
+            return false;
+        }
+
+        return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
+
+    }
+    public boolean isValidBST(TreeNode root) {
+        return dfs(root, null, null);
     }
 }
