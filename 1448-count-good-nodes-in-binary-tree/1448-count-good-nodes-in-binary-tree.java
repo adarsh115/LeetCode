@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    int good;
+    int good = 0;
     public void solve(TreeNode root, int highest_ancestor){
         if(root == null)return;
         
@@ -26,7 +26,7 @@ class Solution {
         solve(root.right, highest_ancestor);
     }
     public int goodNodes(TreeNode root) {
-        good = 0;
+        // good = 0;
         solve(root, Integer.MIN_VALUE);
         
         return good;
