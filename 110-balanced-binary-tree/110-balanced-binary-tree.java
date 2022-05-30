@@ -30,7 +30,7 @@ class Solution {
         // height_difference = Integer.MIN_VALUE;
             
         solve(root);
-        System.out.print(height_difference);
+        // System.out.print(height_difference);
         return !(height_difference > 1);
     }
 }
