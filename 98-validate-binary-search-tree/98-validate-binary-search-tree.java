@@ -15,15 +15,18 @@
  */
 class Solution {
 
-    private boolean dfs(TreeNode root, Integer min, Integer max) {
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    public boolean isValidBST(TreeNode root, long minVal, long maxVal) {
         if (root == null) return true;
-
-        if ((min != null && root.val <= min) || max != null && root.val >= max) {
-            return false;
-        }
-
-        return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
-
+        if (root.val >= maxVal || root.val <= minVal) return false;
+        
+        boolean left = isValidBST(root.left, minVal, root.val);
+        boolean right = isValidBST(root.right, root.val, maxVal);
+        
+        return left && right;
     }
 //     public boolean isValidBST(TreeNode root) {
 //         if(root == null)return true;
@@ -45,7 +48,5 @@ class Solution {
 //         }
 //         return true;
 //     }
-    public boolean isValidBST(TreeNode root) {
-        return dfs(root, null, null);
-    }
+
 }
