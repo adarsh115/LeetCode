@@ -22,13 +22,13 @@ class Solution {
         int left = solve(root.left);
         int right = solve(root.right);
         
-        int Diameter = left+right;
-        max = Math.max(max, Diameter);
+        int diameter = left+right;
+        max = Math.max(max, diameter);
         
         return 1 + Math.max(left, right);
     }
     public int diameterOfBinaryTree(TreeNode root) {
-        max = Integer.MIN_VALUE;
+        // max = Integer.MIN_VALUE;
         solve(root);
         
         return max;
