@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    int height_difference;
+    int height_difference = Integer.MIN_VALUE;
     int solve(TreeNode root){
         if(root == null)return 0;
         
@@ -27,7 +27,7 @@ class Solution {
         return 1 + Math.max(left, right);
     }
     public boolean isBalanced(TreeNode root) {
-        height_difference = Integer.MIN_VALUE;
+        // height_difference = Integer.MIN_VALUE;
             
         solve(root);
         System.out.print(height_difference);
