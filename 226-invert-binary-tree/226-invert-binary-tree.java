@@ -14,23 +14,20 @@
  * }
  */
 class Solution {
-    public TreeNode invertTree(TreeNode node) {
-        if(node == null)return null;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(node);
+    public TreeNode solve(TreeNode root){
+        if(root == null)return  null;
+        TreeNode left = solve(root.left);
+        TreeNode right = solve(root.right);
         
-        while(!q.isEmpty()){
-            TreeNode root = q.remove();
-            TreeNode temp = root.left;
-            root.left = root.right;
-            root.right = temp;
-            
-            if(root.left != null)q.add(root.left);
-            if(root.right != null)q.add(root.right);
-        }
+        root.left = right;
+        root.right = left;
         
+        return root;
+    }
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null || root.right == null && root.left == null)return root;
+        solve(root);
         
-        return node;
+        return root;
     }
 }
-
