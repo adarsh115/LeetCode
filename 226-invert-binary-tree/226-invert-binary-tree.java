@@ -37,9 +37,9 @@ class Solution {
             if(temp.right != null)q.add(temp.right);
             
             TreeNode left = temp.left;
-            TreeNode right = temp.right;
+            // TreeNode right = temp.right;
             
-            temp.left = right;
+            temp.left = temp.right;
             temp.right = left;
             
         }
