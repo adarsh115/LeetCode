@@ -36,7 +36,7 @@ class Solution {
             int x = edge[0];
             int y = edge[1];
             
-            if(u.union(x,y) == false){ans = edge; }
+            if(u.union(x,y) == false){ans = edge; break;}
         }
         
         return ans;
