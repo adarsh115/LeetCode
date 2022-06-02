@@ -21,17 +21,17 @@ class GFG {
 
 //User function Template for Java
 class Solution {
-    static long dp[] = new long[1001];
-    static long pow = 1000000007;
     static long nthFibonacci(long n){
         // code here
-        dp[0] = 0;
-        dp[1] = 1;
-        
+        int prev = 0;
+        int prev2 = 1;
         for(int i = 2; i<=n; i++){
-            dp[i] = dp[i-1]%pow + dp[i-2]%pow;
+            int current = prev%1000000007 + prev2%1000000007;
+            
+            prev = prev2;
+            prev2 = current;
         }
         
-        return dp[(int)n] % pow;
+        return prev2%1000000007;
     }
 }
