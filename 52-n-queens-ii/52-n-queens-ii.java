@@ -3,7 +3,7 @@ class Solution {
     Set<Integer> nDia  = new HashSet<Integer>();
     Set<Integer> pDia  = new HashSet<Integer>();
     
-    int count;
+    int count = 0;
     
     public void solve(int board[][], int r, int n){
         if(r == n){
@@ -28,7 +28,6 @@ class Solution {
     }
     
     public int totalNQueens(int n) {
-        count = 0;
         int board[][] = new int[n][n];
         
         for(int b[] : board){
