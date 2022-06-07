@@ -9,7 +9,8 @@ class Solution {
 
             for(int i = 1; i < N; i++){
                 if(N % i == 0){
-                    if(solve(N-i) == 0)return dp[N] = 1;;
+                    if(solve(N-i) == 0)return dp[N] = 1;
+                    if(i != 1 && solve(N - (N/i)) == 0)return dp[N] = 1;
                 }
             }
             
