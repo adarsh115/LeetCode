@@ -1,5 +1,5 @@
 class Solution {
-    int dp[];
+ 
 //     private int minCost(int[] cost, int n) {
 //         if (n < 0) return 0;
 //         if (n==0 || n==1) return cost[n];
@@ -9,11 +9,11 @@ class Solution {
 //     }
     
     public int minCostClimbingStairs(int[] cost) {
-    
-        this.dp = new int[1001];
+         int n = cost.length;
+       int dp[] = new int[n];
         Arrays.fill(dp, -1);
 
-        int n = cost.length;
+       
         
         int first = cost[0];
         int second = cost[1];
