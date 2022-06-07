@@ -11,7 +11,7 @@ class Solution {
         
         
         List<Integer> previous = solve(N-1,ans);
-        List<Integer> current = new ArrayList<>(N);
+        List<Integer> current = new ArrayList<>();
         
         current.add(0, previous.get(0));
         for(int i = 1; i<N-1;i++){
