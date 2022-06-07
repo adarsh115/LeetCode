@@ -18,8 +18,9 @@ class Solution {
         }
     }
     public boolean divisorGame(int n) {
-        this.dp = new int[1001];
-        Arrays.fill(dp, -1);
-        return solve(n) == 1;
+        // this.dp = new int[1001];
+        // Arrays.fill(dp, -1);
+        // return solve(n) == 1;
+        return n%2 == 0;
     }
 }
