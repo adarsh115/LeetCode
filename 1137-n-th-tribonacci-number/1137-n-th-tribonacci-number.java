@@ -1,5 +1,4 @@
 class Solution {
-    int dp[];
     public int solve(int n){
         if(n == 0)return 0;
         if(n == 1 || n == 2)return 1;
@@ -19,8 +18,7 @@ class Solution {
         return third;
     }
     public int tribonacci(int n) {
-        // this.dp = new int[38];
-        // Arrays.fill(dp, -1);
+
         return solve(n);
     }
 }
