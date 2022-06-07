@@ -144,9 +144,10 @@ class Solution
             fast = fast.next.next;
         }
         
-        TNode root = new TNode(slow.data);
         
         prev.next = null;
+        
+        TNode root = new TNode(slow.data);
         
         root.left = sortedListToBST(head);
         root.right = sortedListToBST(slow.next);
