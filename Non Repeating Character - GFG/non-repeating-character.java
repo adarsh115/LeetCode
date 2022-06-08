@@ -36,22 +36,20 @@ class Solution
     static char nonrepeatingCharacter(String S)
     {
         // map to store characters and thier frequency
-        HashMap<Character, Integer> map = new HashMap<>();
-        
-        for(char c : S.toCharArray()){
-            if(map.containsKey(c)){
+        for(int i = 0; i<S.length(); i++){
+            
+            int count = 0;
+            for(int j = 0; j< S.length(); j++){
                 
-                int current_count = map.get(c);
+                if(i == j)continue;
+                if(S.charAt(i) == S.charAt(j))break;
                 
-                map.put(c, current_count + 1);
+                count++;
             }
-            else
-                map.put(c ,1);
-        }
-        
-        
-        for(char c : S.toCharArray()){
-            if(map.get(c) == 1)return c;
+            
+            if(count == S.length() - 1){
+                return S.charAt(i);
+            }
         }
         
         return '$';
