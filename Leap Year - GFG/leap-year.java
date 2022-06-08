@@ -32,7 +32,7 @@ class Solution{
         }
         else if (year % 100 == 0)
         {
-                return 0;
+            return 0;
         }
         else if(year % 4 == 0)
         {
@@ -40,7 +40,7 @@ class Solution{
         }
         else
         {
-                return 0;
+            return 0;
         }
     }
 }
