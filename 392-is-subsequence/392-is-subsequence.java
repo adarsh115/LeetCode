@@ -4,14 +4,14 @@ class Solution {
         
         int indexS = 0, indexT = 0;
         
-        while (indexT < t.length() && indexS < s.length()) {
+        while (indexT < t.length()) {
             if (t.charAt(indexT) == s.charAt(indexS)) {
                 indexS++;
-                
+                if (indexS == s.length()) return true;
             }
             indexT++;
         }
-       if (indexS == s.length()) return true;
+       
         return false;
     }
 }
