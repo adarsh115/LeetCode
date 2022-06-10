@@ -14,19 +14,19 @@ class Solution {
                 map.put(s.charAt(j), 1);
             
             int k = j-i+1;
-
-            if(map.size() == k){
+            if(map.size() > k){
+                j++;
+            }
+            else if(map.size() == k){
                 maxLength = Math.max(maxLength, k);
                 j++;
             }
             else if(map.size() < k){
                 while(map.size() < j-i+1){
-                    char y = s.charAt(i);
-                    map.put(y, map.get(y)-1);
-                    if(map.get(y) == 0)map.remove(y);
+                    map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
+                    if(map.get(s.charAt(i)) == 0)map.remove(s.charAt(i));
                     i++;
                 }
-                
                 j++;
             }
         }
