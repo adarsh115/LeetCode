@@ -27,9 +27,9 @@ class Solution {
                 
                 while(map.size() < j-i+1){
                     
-                    if(map.containsKey(s.charAt(i))){
+                   
                         map.put(s.charAt(i), map.get(s.charAt(i))-1);
-                    }
+                    
                     if(map.get(s.charAt(i)) == 0){
                         map.remove(s.charAt(i));
                     }
