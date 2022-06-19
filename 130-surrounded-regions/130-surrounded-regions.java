@@ -13,14 +13,7 @@ class Solution {
         int n = board.length;
         int m = board[0].length;
         
-        // Queue<Pair> q = new Pair<>();
-                for(int i = 0; i<n; i++){
-        for(int j = 0; j<m; j++){
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
+
         
         for(int j = 0; j<m; j++){
             if(board[0][j] == ('O')){
@@ -43,12 +36,12 @@ class Solution {
             }
         }
 
-        for(int i = 0; i<n; i++){
-            for(int j = 0; j<m; j++){
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
-        }
+        // for(int i = 0; i<n; i++){
+        //     for(int j = 0; j<m; j++){
+        //         System.out.print(board[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
         
         for(int i = 0; i<n; i++){
             for(int j = 0; j<m; j++){
