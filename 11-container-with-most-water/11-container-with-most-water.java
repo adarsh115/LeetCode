@@ -1,23 +1,32 @@
 class Solution {
     public int maxArea(int[] height) {
-        int n = height.length;
+        int max_area = 0;
+        int water_gaps = 0;
         
-        int s = 0;
-        int e = n-1;
+        int buildings = height.length;
         
-        int area = Integer.MIN_VALUE;
-        while(s < e){
-            int width = e - s;
+        int first_building = 0;
+        int last_building = buildings-1;
+        
+        while(first_building < last_building){
+            water_gaps = last_building - first_building;
             
-            int min_height = Math.min(height[s], height[e]);
+            int height_first = height[first_building];
+            int height_last = height[last_building];
             
-            area = Math.max(area, min_height*width);
+            max_area = Math.max(max_area, (water_gaps * Math.min(height_first, height_last)));
             
-            if(height[s] < height[e])s++;
-            else e--;
+            
+            if(height_first < height_last)first_building++;
+            else if(height_first > height_last)last_building--;
+            else {
+                first_building++;
+                last_building--;
+            }
+            
+            
         }
         
-        return area;
-        
+        return max_area;
     }
 }
