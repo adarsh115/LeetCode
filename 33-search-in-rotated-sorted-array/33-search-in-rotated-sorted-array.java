@@ -1,42 +1,53 @@
 class Solution {
-    public int min(int arr[], int n){
-        if(arr[0] <= arr[n-1])return 0;
+    int findMin(int nums[]){
         int s = 0;
-        int e = n-1;
+        int e = nums.length-1;
+        
+//         0   1
+//         3 , 1
+        
+        // if(nums[s] < nums[e])return s;
+        int n = nums.length;
         
         while(s <= e){
-            int mid  = s + (e-s)/2;
+            int mid = s + (e-s)/2;
+            int num = nums[mid];
             
-            if( arr[mid] <= arr[(mid -1 +n)%n] && arr[mid] <= arr[(mid + 1)%n]){
+            if(num <= nums[(mid + 1)%n] && num <= nums[(mid-1+n)%n]){
                 return mid;
             }
-            else if( arr[mid] >= arr[0] )s = mid + 1;
-            else if( arr[mid] <= arr[n-1] )e = mid - 1;
-        }
-        
-        return -1;
-    }
-    public int binarySearch(int arr[], int s, int e, int target){
-        
-        while(s <= e){
-            int mid = s+ (e-s)/2;
-            
-            if(arr[mid] == target)return mid;
-            else if(arr[mid] < target)s = mid+1;
-            else {
+            else if(num >= nums[0]){
+                s = mid+1;
+            }
+            else if(num <= nums[n-1]){
                 e = mid-1;
             }
+            
         }
         
+        return 0;
+    }
+    public int binarySearch(int nums[], int s, int e, int target){
+        while(s <= e){
+            int mid = s + (e-s)/2;
+            
+            if(nums[mid] == target)return mid;
+            else if(nums[mid] > target)e = mid-1;
+            else if(nums[mid] < target)s = mid+1;
+            
+        }
         return -1;
     }
     public int search(int[] nums, int target) {
-        int min = min(nums, nums.length);
-        // System.out.print(min);
-        int ans1 = binarySearch(nums, 0, min-1, target);
-        int ans2 = binarySearch(nums, min, nums.length-1, target);
+        int minIndex = findMin(nums);
         
-        return Math.max(ans1, ans2);
+        System.out.print(minIndex);
+        int firstPart = binarySearch(nums, 0, minIndex-1, target);
+        int secondPart = binarySearch(nums, minIndex, nums.length-1, target);
+        System.out.print(firstPart + " " + secondPart);
+        
+        return Math.max(firstPart,secondPart);
+        
         // return -1;
     }
 }
