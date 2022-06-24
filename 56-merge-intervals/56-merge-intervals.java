@@ -20,12 +20,13 @@ class Solution {
                 stack.push(intervals[i]);
             }
             else{
-                stack.pop();
-                int merged[] = new int[2];
-                merged[0] = start;
-                merged[1] = Math.max(end, intervals[i][1]);
+//                 stack.pop();
+//                 int merged[] = new int[2];
+//                 merged[0] = start;
+//                 merged[1] = Math.max(end, intervals[i][1]);
                 
-                stack.push(merged);
+//                 stack.push(merged);
+                top[1] = Math.max(end, intervals[i][1]);
             }
         }
         
