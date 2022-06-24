@@ -11,12 +11,12 @@ class Solution {
         
         for(int i=1; i<n; i++){
             int[]top = stack.peek();
-            int start = top[0];
-            int end = top[1];
+//             int start = top[0];
+//             int end = top[1];
             
             //Overlapping intervals
             
-            if(end < intervals[i][0]){
+            if(top[1] < intervals[i][0]){
                 stack.push(intervals[i]);
             }
             else{
@@ -26,7 +26,7 @@ class Solution {
 //                 merged[1] = Math.max(end, intervals[i][1]);
                 
 //                 stack.push(merged);
-                top[1] = Math.max(end, intervals[i][1]);
+                top[1] = Math.max(top[1], intervals[i][1]);
             }
         }
         
