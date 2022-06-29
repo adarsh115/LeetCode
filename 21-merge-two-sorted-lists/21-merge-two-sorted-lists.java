@@ -23,15 +23,15 @@ class Solution {
             if(temp1.val <= temp2.val){
                 ListNode newnode = new ListNode(temp1.val);
                 temp.next = newnode;
-                temp = temp.next;
+ 
                 temp1 = temp1.next;
             }
             else{
                 ListNode newnode = new ListNode(temp2.val);
                 temp.next = newnode;
-                temp = temp.next;
                 temp2 = temp2.next;
             }
+                           temp = temp.next;
         }
         
         while(temp1 != null){
