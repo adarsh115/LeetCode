@@ -31,20 +31,15 @@ class Solution {
                 temp.next = newnode;
                 temp2 = temp2.next;
             }
-                           temp = temp.next;
+            temp = temp.next;
         }
         
-        while(temp1 != null){
-            ListNode newnode = new ListNode(temp1.val);
-            temp.next = newnode;
-            temp = temp.next;
-            temp1 = temp1.next;
+        if(temp1 != null){
+            temp.next = temp1;
         }
-        while(temp2 != null){
-            ListNode newnode = new ListNode(temp2.val);
-            temp.next = newnode;
-            temp = temp.next;
-            temp2 = temp2.next;
+        if(temp2 != null){
+            temp.next = temp2;
+
         }
         
         return ans.next;
