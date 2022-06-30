@@ -5,7 +5,7 @@ class Solution {
         int indegree[] = new int[n];
         
         for(List<Integer> edge : edges){
-            indegree[edge.get(1)]++;
+            indegree[edge.get(1)] = 1;
         }
         
         for(int i =0; i<n; i++){
