@@ -12,9 +12,6 @@ class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
         boolean visited[] = new boolean[rooms.size()];
         
-        HashSet<Integer> keys = new HashSet<>();   
-        keys.add(0);
-        
         // solve(rooms, keys, 0);
         Stack<Integer> stack = new Stack<>();
         stack.add(0);
