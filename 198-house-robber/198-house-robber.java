@@ -1,37 +1,19 @@
 class Solution {
     int dp[];
-//     public int solve(int nums[], int n){
-//         if(n == 0)return nums[0];
-//         if(n < 0)return 0;
+    public int solve(int house, int nums[], int n){
+        if(house >= n)return 0;
         
-//         if(dp[n] != -1)return dp[n];
+        if(dp[house] != -1)return dp[house];
+        int not_take = solve(house+1, nums, n);
+        int take = nums[house] + solve(house+2, nums, n);
         
-//         int pick = nums[n] + solve(nums, n-2);
-//         int not_pick = solve(nums, n-1);
-        
-//         return dp[n] = Math.max(pick, not_pick);
-//     }
+        return dp[house] = Math.max(take, not_take);
+    }
     public int rob(int[] nums) {
-            if(nums.length==0) return 0;
-    if(nums.length==1) return nums[0];
         int n = nums.length;
-        
         this.dp = new int[n+1];
         Arrays.fill(dp, -1);
-        
-        int first = nums[0];
-        int second = Math.max(nums[0], nums[1]);
-        for(int i=2; i<n; i++){
-            int take = nums[i] + first;            
-            int not_take = second;
-            
-            
-            int current = Math.max(take, not_take);
-            
-            first = second;
-            second = current;
-        }
-        
-        return second;
+
+        return solve(0, nums, n);
     }
 }
