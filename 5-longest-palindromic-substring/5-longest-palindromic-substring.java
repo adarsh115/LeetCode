@@ -2,32 +2,33 @@ class Solution {
     String longest;
     int len;
     
-    public void solve(int left, int right, String s, int n){
-        while(left >=0 && right < n && s.charAt(left) == s.charAt(right)){
-            if(right - left + 1 > len){
-                len = right-left +1;
-                longest = s.substring(left, right+1);
+    public void solve(String s, int start, int end, int n){
+        
+        while(start >= 0 && end < n && s.charAt(start) == s.charAt(end)){            
+            int currentlen = end-start+1;
+            
+            if(currentlen > len){
+                len = currentlen;
+                longest = s.substring(start, end+1);
             }
-            left--;
-            right++;
+            start--;
+            end++;
         }
+        return;
     }
     public String longestPalindrome(String s) {
         this.longest = "";
         this.len = 0;
         
         int n = s.length();
-        
-        for(int i = 0; i<n; i++){
-            int left = i;
-            int right = i;
-            
-            solve(left, right, s, n);
-            
-            left= i;
-            right = i+1;
-            solve(left, right, s, n);
-        }
+
+         for(int i=0; i<n; i++){
+             
+                solve(s, i, i, n);
+
+                solve(s, i, i+1, n);
+         }
+
         
         return longest;
     }
