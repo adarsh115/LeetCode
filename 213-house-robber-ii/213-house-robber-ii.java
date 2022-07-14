@@ -1,32 +1,26 @@
 class Solution {
-    public int solve(int nums[], int start, int end){
-        int first = 0;
-        int second = 0;
-        if(start == 0){
-            for(int i=0; i<end-1; i++){
-                int third = Math.max(first + nums[i], second);
-
-                first = second;
-                second = third;
-            }
-        }
-        else if(start == 1){
-            for(int i=1; i<end; i++){
-                int third = Math.max(first + nums[i], second);
-
-                first = second;
-                second = third;
-            }
-        }
-
+       int dp[];
+    public int solve(int nums[], int n, int i){
+        if(i > n-1)return 0;
         
-
-        return second;
+        if(dp[i] != -1)return dp[i];
+        int not_take = solve(nums,n, i+1);
+        
+        int take = nums[i] + solve(nums,n,i+2);
+        
+        return dp[i] = Math.max(take, not_take);
     }
     public int rob(int[] nums) {
-        if(nums.length == 1)return nums[0];
-        int n = nums.length;
+        this.dp = new int[nums.length+1];
+        Arrays.fill(dp, -1);
         
-        return Math.max(solve(nums, 0, n), solve(nums, 1, n));
+        int n = nums.length;
+        if(n == 1)return nums[0];
+        int right = solve(nums, n, 1);
+        Arrays.fill(dp, -1);
+        int left = solve(nums, n-1, 0);
+ 
+        return Math.max(right, left);
     }
+
 }
