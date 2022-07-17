@@ -10,46 +10,48 @@
  * }
  */
 public class Solution {
-    public ListNode findIntersection(ListNode headA, ListNode headB, int diff) {
-        while(diff > 0){
-            headA = headA.next;
-            diff--;
+    public ListNode solve(ListNode A, ListNode B, int diff){
+                System.out.print(diff);
+        ListNode temp1 = A;
+        while(diff-- > 0){
+            temp1 = temp1.next;
         }
         
-        while (headA != null && headB!= null) {
-			if (headA == headB) {
-				return headA;
-			}
-			headA = headA.next;
-			headB = headB.next;
-		}
-		return null;
+        ListNode temp2 = B;
+        
+        while(temp1 != temp2){
+            
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        
+        return temp1;
     }
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        // if(headA.next == null && headB.next == null)return null;
         
-        int lenA = 0;
+        int a=0, b=0;
+        ListNode ans = null;
+        
         ListNode temp = headA;
-        
         while(temp != null){
-            lenA++;
+            a++;
             temp = temp.next;
         }
-        
-        int lenB = 0;
         temp = headB;
         while(temp != null){
-            lenB++;
+            b++;
             temp = temp.next;
         }
-        System.out.print(lenA + " " + lenB);
-        // if(lenA <= 1 || lenB <= 1)return null;
         
-        if(lenA > lenB){
-            return findIntersection(headA, headB, lenA - lenB);
+        int diff = a-b;
+
+        if(diff > 0){
+           return solve(headA, headB, a-b);
         }
         else{
-            return findIntersection(headB, headA, lenB - lenA);
+            return solve(headB, headA, b-a);
         }
+        
+        // return ans;
     }
 }
