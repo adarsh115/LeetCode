@@ -1,62 +1,59 @@
 class Solution {
-    public int[] nearest_smallest_right(int arr[], int n){
-        Stack<int[]> s = new Stack<>();
-        
-        int nsr[] = new int[n];
-        
-        for(int i = n-1; i>=0; i--){
-            while(s.size() > 0 && s.peek()[0] >= arr[i])s.pop();
-            
-            if(s.isEmpty())nsr[i] = n;
-            else nsr[i] = s.peek()[1];
-            
-            int pair[] = new int[]{arr[i], i};
-            s.push(pair);
-        }
-        
-        return nsr;
-    }
-    public int[] nearest_smallest_left(int arr[], int n){
-        Stack<int[]> s = new Stack<>();
-        
-        int nsl[] = new int[n];
-        
-        for(int i = 0; i<n; i++){
-            while(s.size() > 0 && s.peek()[0] >= arr[i])s.pop();
-            
-            if(s.isEmpty())nsl[i] = -1;
-            else nsl[i] = s.peek()[1];
-            
-            int pair[] = new int[]{arr[i], i};
-            s.push(pair);
-        }
-        
-        return nsl;
-    }
-    public int largestRectangleArea(int[] heights) {
-        int n = heights.length;
-        int nearest_smallest_right[] = new int[n];
-        int nearest_smallest_left[] = new int[n];
-        int width[] = new int[n];
-        
-        
-        nearest_smallest_right = nearest_smallest_right(heights, n);
-        nearest_smallest_left = nearest_smallest_left(heights, n);
-        
-        System.out.println(Arrays.toString(nearest_smallest_right));
-        System.out.println(Arrays.toString(nearest_smallest_left));
-        
-        for(int i = 0; i<n; i++){
-            width[i] = nearest_smallest_right[i] - nearest_smallest_left[i] - 1;
+    int nsr[], nsl[], n;
 
+    public void findNSR(int heights[]) {
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (st.isEmpty()) nsr[i] = n; 
+            else if (st.size() > 0 && heights[st.peek()] < heights[i]) nsr[i] = st.peek(); 
+            else {
+                while (st.size() > 0 && heights[st.peek()] >= heights[i]) st.pop();
+
+                if (st.isEmpty()) nsr[i] = n; else nsr[i] = st.peek();
+            }
+
+            st.push(i);
         }
+
+        Collections.reverse(Arrays.asList(nsr));
+    }
+
+    public void findNSL(int heights[]) {
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < n ; i++) {
+            if (st.isEmpty()) nsl[i] = -1; 
+            else if (st.size() > 0 && heights[st.peek()] < heights[i]) nsl[i] = st.peek(); 
+            else {
+                while (st.size() > 0 && heights[st.peek()] >= heights[i]) st.pop();
+
+                if (st.isEmpty()) nsl[i] = -1; else nsl[i] = st.peek();
+            }
+
+            st.push(i);
+        }
+
+        // Collections.reverse(Arrays.asList(nsl));
+    }
+
+    public int largestRectangleArea(int[] heights) {
+        this.n = heights.length;
+        this.nsr = new int[n];
+        this.nsl = new int[n];
+
+        findNSR(heights);
+        findNSL(heights);
         
-        int max = Integer.MIN_VALUE;
-		for(int i = 0; i < n; i++){
-			int area = heights[i]*width[i];
-			if(area > max)max = area;
-		}
-        
+        System.out.println(Arrays.toString(nsr));
+        System.out.print(Arrays.toString(nsl));
+
+        int max = 0;
+        for(int i =0 ; i<n; i++){
+            int spreadWidth = nsr[i] - nsl[i]-1;
+            
+            max = Math.max(max, spreadWidth*heights[i]);
+        }
         return max;
     }
 }
