@@ -21,7 +21,7 @@ class Solution {
             if(list.size() == 0)list.offer(nums[j]);
             else{
                 while(list.size() > 0 && list.peekLast() < nums[j])list.pollLast();
-                list.offer(nums[j]);
+                list.offerLast(nums[j]);
             }
             
             if(j-i+1 == k){
