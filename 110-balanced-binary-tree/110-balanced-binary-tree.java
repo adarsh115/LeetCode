@@ -20,14 +20,11 @@ class Solution {
         int left = solve(root.left);
         int right = solve(root.right);
         
-        if(left == -1 || right == -1)return -1;
-        // System.out.println(left + " " + right);
-        if(Math.abs(left - right) > 1)return -1;
+        if(left == -1 || right == -1 || Math.abs(left - right) > 1)return -1;
         
         return Math.max(left, right) + 1;
     }
     public boolean isBalanced(TreeNode root) {
-        System.out.print(solve(root));
         if(solve(root) == -1)return false;
         return true;
     }
