@@ -20,9 +20,11 @@ class Solution {
         int left = solve(root.left);
         int right = solve(root.right);
         
-        return 1 + Math.max(left, right);
+        return Math.max(left, right) + 1;
     }
     public int maxDepth(TreeNode root) {
+        if(root == null)return 0;
+        
         return solve(root);
     }
 }
