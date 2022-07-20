@@ -14,37 +14,20 @@
  * }
  */
 class Solution {
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        if(p == null && q != null || p != null && q == null)return false;
-        
+    public boolean solve(TreeNode p, TreeNode q){
         if(p == null && q == null)return true;
-        Queue<TreeNode> same = new LinkedList<>();
+        if(p == null || q == null)return false;
+        if(p.val != q.val)return false;
         
-        same.add(p);
-        same.add(q);
+        boolean left = solve(p.left, q.left);
+        boolean right = solve(p.right, q.right);
         
-        while(!same.isEmpty()){
-        
-            TreeNode first = same.remove();
-            TreeNode second = same.remove();
-            
-            if(first.val != second.val)return false;
-            if(first.left != null && second.left == null || first.left == null && second.left != null)return false;
-            if(first.right != null && second.right == null || first.right == null && second.right != null)return false;
-            
-            if(first.left != null && second.left != null){
-                same.add(first.left);
-                same.add(second.left);
-            }
-
-            
-            if(first.right != null && second.right != null){
-                same.add(first.right);
-                same.add(second.right);
-            }
-
-        }
+        if(left == false || right == false)return false;
         
         return true;
+        
+    }
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        return solve(p, q);
     }
 }
