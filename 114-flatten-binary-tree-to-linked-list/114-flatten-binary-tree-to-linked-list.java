@@ -14,33 +14,27 @@
  * }
  */
 class Solution {
-    public void preorder(TreeNode root, ArrayList<Integer> list){
-        if(root == null) return;
-        
-        list.add(root.val);
-        preorder(root.left, list);
-        preorder(root.right, list);
-    }
+
     public void flatten(TreeNode root) {
-        if(root == null)return;
-        ArrayList<Integer> list = new ArrayList<>();
-        preorder(root, list);
         
-        // System.out.print(list);
+        if(root == null)return ;
         
-        TreeNode rt = new TreeNode(list.get(0));
-        TreeNode curr = root;
+        Stack<TreeNode> st = new Stack<>();
         
-        for(int i=1; i<list.size(); i++){
-            TreeNode temp = new TreeNode(list.get(i));
-            curr.right = temp;
+        st.push(root);
+        
+        while(!st.isEmpty()){
+            TreeNode curr = st.peek();
+            st.pop();
+            
+            if(curr.right != null)st.push(curr.right);
+            if(curr.left != null)st.push(curr.left);
+            
+            
+            if(!st.isEmpty())curr.right = st.peek();
             curr.left = null;
-            curr = temp;
-            // System.out.print(rt.val + " " + "rt");
         }
-        curr.left = null;
-        curr.right = null;
         
-        root = curr;
+        
     }
 }
