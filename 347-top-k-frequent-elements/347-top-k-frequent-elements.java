@@ -1,34 +1,33 @@
-class Pair{
-    int val;
-    int fre;
-    
-    Pair(int v, int f){
-        val = v;
-        fre = f;
+class pair{
+    int freq;
+    int num;
+    pair(int n, int f){
+        this.freq = f;
+        this.num = n;
     }
 }
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
+        
         HashMap<Integer, Integer> map = new HashMap<>();
         for(int num : nums){
-            map.put(num, map.getOrDefault(num, 0) + 1 );
+            map.put(num, map.getOrDefault(num, 0) +1);
         }
         
-        Queue<Pair> q = new PriorityQueue<>((a,b) -> {return a.fre - b.fre;});
+        Queue<pair> q = new PriorityQueue<>((a,b) -> {return a.freq - b.freq;});
         
-        for(Map.Entry<Integer, Integer> entry: map.entrySet()){
-            int value = entry.getKey();
-            int frequency = entry.getValue();
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
             
-            q.add(new Pair(value, frequency));
+            q.add(new pair(entry.getKey(), entry.getValue()));
             
-            if(q.size() > k)q.poll();
+            if(q.size() > k)q.remove();
         }
         
-        int ans[] = new int[q.size()];
-        int i = 0;
+        System.out.print(map.values());
+        int ans[] =  new int[q.size()];
+        int i = q.size()-1;
         while(!q.isEmpty()){
-            ans[i++] = q.poll().val;
+            ans[i--] = q.remove().num;
         }
         
         return ans;
