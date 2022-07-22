@@ -30,6 +30,24 @@ class Solution {
         // if(root.left == null && root.right == null)return true;
         // if(root.left == null || root.right == null)return false;
         
-        return solve(root.left, root.right);
+        // return solve(root.left, root.right);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root.left);
+        q.add(root.right);
+        
+        while(q.size() > 1){
+            TreeNode left = q.remove();
+            TreeNode right = q.remove();
+            
+            if(left == null && right == null)continue;
+            if(left == null || right == null || left.val != right.val)return false;
+            
+            q.add(left.left);
+            q.add(right.right);
+            q.add(left.right);
+            q.add(right.left);
+        }
+              
+        return true;   
     }
 }
