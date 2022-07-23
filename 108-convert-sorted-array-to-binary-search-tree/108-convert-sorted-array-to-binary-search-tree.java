@@ -14,21 +14,21 @@
  * }
  */
 class Solution {
-    public TreeNode insert(TreeNode root, int val){
-        if(root == null){
-            root = new TreeNode(val);
-            return root;
-        }
+//     public TreeNode insert(TreeNode root, int val){
+//         if(root == null){
+//             root = new TreeNode(val);
+//             return root;
+//         }
         
-        if(root.val > val){
-            root.left  = insert(root.left, val);
-        }
-        else{
-            root.right = insert(root.right, val);
-        }
+//         if(root.val > val){
+//             root.left  = insert(root.left, val);
+//         }
+//         else{
+//             root.right = insert(root.right, val);
+//         }
         
-        return root;
-    }
+//         return root;
+//     }
     
     public TreeNode solve(int nums[], int left, int right){
         if(left > right)return null;
