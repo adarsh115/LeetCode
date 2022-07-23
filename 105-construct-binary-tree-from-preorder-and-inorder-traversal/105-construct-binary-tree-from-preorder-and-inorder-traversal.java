@@ -14,29 +14,38 @@
  * }
  */
 class Solution {
-    int index;
-
-    public TreeNode solve(int[] preorder, int[] inorder, int s, int e, int l){
-        if(s > e || index >= l)return null;
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int n = preorder.length;
+        if(n == 0)return null;
+        if(n ==1)return new TreeNode(preorder[0]);
         
-        int rootElement = preorder[index++];
-        TreeNode root = new TreeNode(rootElement);
-        
-        int position = 0; // Index of current root in inorder
-        for (int i = s; i <= e; i++) {
-            if (inorder[i] == rootElement) {
-                position = i;
-            }
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i<n ;i++){
+            map.put(inorder[i], i);
         }
         
-        root.left = solve(preorder, inorder, s, position-1, l);
-        root.right = solve(preorder, inorder, position+1, e,  l);
+        return solve(preorder, 0, n-1, inorder, 0, n-1, map);
+    }
+    
+    public TreeNode solve(int[] preorder, int ps, int pe, int[] inorder, int is, int ie, HashMap<Integer, Integer> map){
+        if(ps > ps || is > ie)return null;
         
-        return root;
+        TreeNode node  = new TreeNode(preorder[ps]);
+        
+        
+        
+        int currentIndex = map.get(preorder[ps]);
+        int preNext = currentIndex - is;
+        
+        
+        
+        node.left = solve(preorder, ps+1, ps+preNext, inorder, is, currentIndex-1, map);
+        node.right = solve(preorder, ps+preNext+1, pe, inorder, currentIndex+1, ie, map);
+        
+        return node;
+        
+ 
+        
     }
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        int n  = preorder.length;
-        index =  0;
-        return solve(preorder, inorder, 0, n-1, n);
-    }
+
 }
