@@ -1,31 +1,37 @@
 class Solution {
-    public void solve(int arr[], int index, int target, List<List<Integer>> ans, List<Integer> list){
-        if(target == 0){
-            ans.add(new ArrayList(list));
-            return ;
+    
+    List<List<Integer>> combination = new ArrayList<>();
+    int arr[];
+    HashSet<Integer> codes = new HashSet<>();
+    
+    public void solve(int index, int N, int target, ArrayList<Integer> list){
+     
+            if(target == 0){
+                int code = list.hashCode();
+                if(!codes.contains(code)){combination.add(new ArrayList(list));codes.add(code);}
+                return;
+            }
+            if(index == N)return;
+        
+        
+        	if(arr[index] <= target) {
+            // include
+            list.add(arr[index]);    
+            solve(index+1, N, target-arr[index], list);
+            list.remove(list.size()-1);
+            // Skip all duplicate entries
+            while(index+1 < N && arr[index] == arr[index+1]) index += 1;
+            solve(index+1, N, target, list);
         }
-        
-        
-        for(int i = index; i < arr.length; i++){
-            if(i > index && arr[i] == arr[i-1])continue;
-            
-            if(arr[i] > target)break;
-            
-            list.add(arr[i]);
-            solve(arr, i + 1, target - arr[i], ans, list);
-            list.remove(list.size() - 1);
-            
-           
-        }
-        
+
         
     }
-    
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> ans = new ArrayList<>();
-        Arrays.sort(candidates);
-        solve(candidates, 0, target, ans, new ArrayList<>());
+        this.arr = candidates;
+        int n = candidates.length;
+        Arrays.sort(arr);
+        solve(0, n, target, new ArrayList<>());
         
-        return ans;
+        return combination;
     }
 }
