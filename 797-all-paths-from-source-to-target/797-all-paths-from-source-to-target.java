@@ -1,26 +1,25 @@
 class Solution {
-    List<List<Integer>> ans;
-
-    public void dfs(int[][] graph, int u, int n, List<Integer> list) {
-        if (u == n - 1) {
-            ans.add(new ArrayList<Integer>(list));
-            return;
+    List<List<Integer>> allPath;
+    
+    public void solve(int graph[][], int n, List<Integer> path, int node){
+        path.add(node);
+        
+        if(node == n-1){
+            allPath.add(new ArrayList(path));
         }
-
-        for (int v : graph[u]) {
-            list.add(v);
-            dfs(graph, v, n, list);
-            list.remove(list.size() - 1);
+        else{
+            for(int neighbour : graph[node]){
+                solve(graph, n, path, neighbour);
+            }
         }
+        
+        path.remove(path.size()-1);
     }
-
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        this.ans = new ArrayList<>();
-        int n = graph.length;
-        List<Integer> list = new ArrayList<>();
-
-        list.add(0);
-        dfs(graph, 0, n, list);
-        return ans;
+        this.allPath = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        solve(graph, graph.length, path, 0);
+            
+        return allPath;
     }
 }
