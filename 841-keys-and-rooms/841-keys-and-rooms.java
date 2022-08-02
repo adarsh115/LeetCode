@@ -1,33 +1,28 @@
 class Solution {
-    // boolean visited[];
     
-//     public void solve(List<List<Integer>> rooms, HashSet<Integer> keys, int room){
-//         visited[room] = true;
+    public void solve(List<List<Integer>> rooms, boolean visited[], int key){
         
-//         for(int key : rooms.get(room)){
-//             solve(rooms, keys, key);
-//         }
-//         return;
-//     }
-    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        boolean visited[] = new boolean[rooms.size()];
+        visited[key] = true;
         
-        // solve(rooms, keys, 0);
-        Stack<Integer> stack = new Stack<>();
-        stack.add(0);
-        
-        while(!stack.isEmpty()){
-            int key = stack.pop();
-            visited[key] = true;
-            
-            for(int key_in_room : rooms.get(key)){
-                if(!visited[key_in_room])stack.push(key_in_room);
+        for(int k : rooms.get(key)){
+            if(!visited[k]){
+                solve(rooms, visited, k);
             }
         }
+    }
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        int totalrooms = rooms.size();
         
-        for(boolean x : visited){
-            if(x == false)return false;
+        boolean visited[] = new boolean[totalrooms];
+        
+        // visited[0] = true;
+        
+        solve(rooms, visited, 0);
+        
+        for(boolean v: visited){
+            if(v == false)return false;
         }
+        
         return true;
     }
 }
