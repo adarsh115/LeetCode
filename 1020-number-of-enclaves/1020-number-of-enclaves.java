@@ -1,59 +1,53 @@
 class Solution {
     public int numEnclaves(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        for(int i = 0; i<grid[0].length; i++){
-            if(grid[0][i] == 1)dfs(grid, 0, i);
-        }
-        
-
-             
         
         
-        for(int i = 0 ; i<m ; i++){
+        int n = grid.length;
+        int m = grid[0].length;
+        
+        for(int i=0; i<n; i++){
             if(grid[i][0] == 1){
-                dfs(grid, i, 0);
+                dfs(grid, n, m, i, 0);
             }
-        }
-        
-        //right border
-        for(int i = 0 ; i<m ; i++){
-            if(grid[i][n-1] == 1){
-                dfs(grid, i, n-1);
-            }
-        }
-        
-        //bottom border
-        for(int j = 0 ; j<n ; j++){
-            if(grid[m-1][j] == 1){
-                dfs(grid, m-1, j);
+            
+            if(grid[i][m-1] == 1){
+                dfs(grid, n, m, i, m-1);
             }
         }
         
         
+        for(int j=0; j<m; j++){
+            if(grid[0][j] == 1){
+                dfs(grid, n, m, 0, j);
+            }
+            
+            if(grid[n-1][j] == 1){
+                dfs(grid, n, m, n-1, j);
+            }
+        }
         
+        for(int a[] : grid){
+            System.out.print(Arrays.toString(a));
+        }
         
         int count = 0;
-        
-        for(int i = 0 ; i<grid.length ; i++){
-            for(int j = 0 ; j<grid[0].length ; j++){
-                if(grid[i][j] == 1){
-                    count++;
-                }
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(grid[i][j] == 1)count++;
             }
         }
         
         return count;
     }
     
-    public void dfs(int arr[][], int i, int j){
-        if(i < 0 || j< 0 || i>=arr.length || j>=arr[0].length || arr[i][j] == 0)return;
-        
-        arr[i][j] = 0;
-        
-        dfs(arr, i, j+1);
-        dfs(arr, i, j-1);
-        dfs(arr, i+1, j);
-        dfs(arr, i-1, j);
+    public void dfs(int grid[][], int row, int col, int x, int y){
+        if(x >= 0 && x<row && y >= 0 && y < col && grid[x][y] != 0){
+            grid[x][y] = 0;
+            
+            dfs(grid, row, col, x+1, y);
+            dfs(grid, row, col, x-1, y);
+            dfs(grid, row, col, x, y-1);
+            dfs(grid, row, col, x, y+1);
+        }
     }
 }
