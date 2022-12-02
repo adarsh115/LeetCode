@@ -36,41 +36,43 @@ class GFG {
 
 class Solution {
     boolean visited[][];
-    int ax[] = {1,-1,0,0};
-    int ay[] = {0,0,1,-1};
+    HashSet<ArrayList<String>> set = new HashSet<>();
+    int movex[] = {1,-1,0,0};
+    int movey[] = {0,0,1,-1};
     
-    void dfs(int grid[][], int x, int y, int n, int m, int X, int Y, ArrayList<String> island){
+    void dfs(int grid[][], int x, int y, int initialX, int initialY, ArrayList<String> list){
         visited[x][y] = true;
-        island.add(Integer.toString(x-X)+" "+Integer.toString(y-Y));
+        
+        list.add(Integer.toString(x-initialX) + Integer.toString(y-initialY));
         
         for(int i=0; i<4; i++){
-            int row = x + ax[i];
-            int col = y + ay[i];
+            int X = x + movex[i];
+            int Y = y + movey[i];
             
-            if(row >= 0 && row < n && col >=0 && col < m && grid[row][col] != 0 && visited[row][col] == false){
-                dfs(grid, row, col, n, m, X, Y, island);
+            if(X >=0 && X < grid.length && Y >= 0 && Y < grid[0].length && !visited[X][Y] && grid[X][Y] == 1){
+                dfs(grid, X, Y, initialX, initialY, list);
             }
         }
-        
     }
-
     int countDistinctIslands(int[][] grid) {
         // Your Code here
+        
+        
         int n = grid.length;
         int m = grid[0].length;
-        
         this.visited = new boolean[n][m];
-        
-        HashSet<ArrayList<String>> set = new HashSet<>();
         
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                if(visited[i][j] == false && grid[i][j] == 1){
-                    ArrayList<String> island = new ArrayList<>();
+                if(grid[i][j] == 1 && !visited[i][j]){
+                    int initialX = i;
+                    int initialY = j;
                     
-                    dfs(grid, i, j, n, m, i, j, island);
+                    ArrayList<String> list = new ArrayList<>();
                     
-                    set.add(island);
+                    dfs(grid, i, j, initialX, initialY, list);
+                    
+                    set.add(list);
                 }
             }
         }
