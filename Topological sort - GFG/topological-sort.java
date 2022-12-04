@@ -65,20 +65,53 @@ class Solution
     {
         // add your code here
         
-        Stack<Integer> st = new Stack<>();
-        boolean visited[] = new boolean[V];
+        // Stack<Integer> st = new Stack<>();
+        // boolean visited[] = new boolean[V];
         
-        for(int i=0; i<V; i++){
-            if(!visited[i])dfs(i, adj, st, visited);
+        // for(int i=0; i<V; i++){
+        //     if(!visited[i])dfs(i, adj, st, visited);
+        // }
+        
+        // int ans[] = new int[V];
+        // for(int i=0; i<V; i++){
+        //     int top = st.pop();
+        //     ans[i] = top;
+        // }
+        
+        // return ans;
+        
+        
+        int indegree[] = new int[V];
+        for(ArrayList<Integer> nodes: adj){
+            for(int node : nodes)indegree[node]++;
         }
         
-        int ans[] = new int[V];
+        Queue<Integer> q = new LinkedList<>();
         for(int i=0; i<V; i++){
-            int top = st.pop();
-            ans[i] = top;
+            if(indegree[i] == 0)q.add(i);
         }
+        
+        int[] ans = new int[V];
+        int i=0;
+        
+        while(!q.isEmpty()){
+            int node = q.peek();
+            q.remove();
+            
+            ans[i++] = node;
+            
+            for(int next : adj.get(node)){
+                indegree[next] = indegree[next]-1;
+                if(indegree[next] == 0){
+                    q.add(next);
+                }
+            }
+        }
+        
         
         return ans;
+        
+        
     }
     static void dfs(int node, ArrayList<ArrayList<Integer>> adj, Stack<Integer> st, boolean visited[]){
         visited[node] = true;
