@@ -9,8 +9,8 @@ class Solution {
         }
         
         for(int i=0; i<prerequisites.length; i++){
-            int course = prerequisites[i][0];
-            int pre = prerequisites[i][1];
+            int course = prerequisites[i][1];
+            int pre = prerequisites[i][0];
             
             adjList.get(course).add(pre);
         }
