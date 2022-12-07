@@ -18,8 +18,11 @@ class Solution {
             perm.add(new ArrayList<>(list));
             return;
         }
+        Set<Integer> set = new HashSet<>();
         
         for(int i=0; i<nums.length; i++){
+            if(set.contains(nums[i]))continue;
+            set.add(nums[i]);
             if(!map.get(nums[i])){
                 map.put(nums[i], true);
                 list.add(nums[i]);
