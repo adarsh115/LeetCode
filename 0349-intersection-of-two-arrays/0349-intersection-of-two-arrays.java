@@ -17,8 +17,8 @@ class Solution {
         // Iterator<String> it = cars.iterator();
         int ans[] = new int[set1.size()];
         int i=0;
-        while(itr.hasNext()){
-            ans[i++] = itr.next();
+        for(int num: set1){
+            ans[i++] = num;
         }
         return ans;
     }
