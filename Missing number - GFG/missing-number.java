@@ -40,16 +40,25 @@ class Compute {
     public static int missingNumber(int A[], int N)
     {
          // Your code goes here
-         int arr[] = new int[N+1];
+        //  int arr[] = new int[N+1];
          
-         for(int num: A){
-             arr[num] = num;
-         }
+        //  for(int num: A){
+        //      arr[num] = num;
+        //  }
          
-         for(int i=1; i<arr.length; i++){
-             if(arr[i] == 0)return i;
-         }
+        //  for(int i=1; i<arr.length; i++){
+        //      if(arr[i] == 0)return i;
+        //  }
          
-         return 0;
+        //  return 0;
+        
+        int sum = N*(N+1)/2;
+        int arrSum = 0;
+        
+        for(int num: A){
+            arrSum += num;
+        }
+        
+        return sum - arrSum;
     }
 }
