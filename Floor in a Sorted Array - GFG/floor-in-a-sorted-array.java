@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -28,7 +28,8 @@ class Searching
         }
     }
     
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 class Solution{
@@ -36,29 +37,26 @@ class Solution{
     // Function to find floor of x
     // arr: input array
     // n is the size of array
-    static int findFloor(long nums[], int n, long target)
+    static int findFloor(long arr[], int n, long x)
     {
-       
-        if(target < nums[0]) return -1;
-        if(target >= nums[n-1])return n-1;
         
-        int s = 0;
-        int e = n-1;
-        int ans =  -1;
+        int s=0, e = n-1;
         
         while(s <= e){
-            int mid = s + (e-s)/2;
+            int mid = (s+e)/2;
             
-            if(nums[mid] == target)return mid;
-            else if(nums[mid] < target) {
-                ans = mid;
-                s = s+1;
+            if(arr[mid] < x){
+                s = mid+1;
             }
-            else e = e - 1;
+            else if(arr[mid] == x){
+                s = mid+1;
+            }
+            else if(arr[mid] > x){
+                e = mid-1;
+            }
         }
         
-        return ans;
-        
+        return e;
     }
     
 }
