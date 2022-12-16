@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Initial Template for Java
 
 import java.io.*;
@@ -23,42 +23,33 @@ class GFG {
         }
     }
 }
+
 // } Driver Code Ends
 
 
 // User function Template for Java
 
 class Solution {
-    int findmin(int arr[], int n){
+    int findKRotation(int arr[], int n) {
         
-        int end = arr.length - 1;
+        if(n == 1)return 0;
+        int s=0, e=n-1;
+        if(arr[0] < arr[e])return 0;
         
-        int s = 0;
-        int e = arr.length -1;
         
         while(s <= e){
-            int mid = s + (e - s)/2;
-            // System.out.println(mid);
-            if(arr[mid] <= arr[(mid + 1)%n] && arr[mid] <= arr[((mid -1 )+ n)%n]){
-                return mid;
-            }
+            int mid = s+(e-s)/2;
+            
+            if(arr[mid] < arr[(mid+1)%n] && arr[mid] < arr[(mid-1+n)%n])return mid;
+            
             else if(arr[mid] >= arr[0]){
                 s = mid+1;
             }
-            else if(arr[mid] <= arr[end]){
+            else if(arr[mid] <= arr[e]){
                 e = mid-1;
             }
         }
         
         return -1;
-    }
-    int findKRotation(int arr[], int n) {
-        // code here
-        if(n == 0)return 0;
-        // if(arr[0] < arr[n-1])return 0;
-        
-        int minindex = findmin(arr, n);
-        
-        return minindex == -1 ? 0 : minindex;
     }
 }
