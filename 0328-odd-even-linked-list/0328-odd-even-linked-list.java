@@ -33,9 +33,7 @@ class Solution {
         }
         
         if(odd.next == null){
-            even.next = null;
-            
-            
+            even.next = null;            
         }
 
         odd.next = temp;
