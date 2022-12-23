@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 /*package whatever //do not write package name here */
 
 import java.util.*;
@@ -25,6 +25,7 @@ class GFG {
 
 
 
+
 // } Driver Code Ends
 
 
@@ -34,22 +35,27 @@ class Solution
     public static long[] nextLargerElement(long[] arr, int n)
     { 
         // Your code here
+        Stack<Long> st = new Stack<>();
         long ans[] = new long[n];
-        Stack <Long> s = new Stack();
         
-        for(int i = n-1; i>=0; i--){
-            if(s.isEmpty())ans[i] = -1;
-            else if(s.size() > 0 && s.peek() <= arr[i]){
-                
-                while(s.size() > 0 && s.peek() <= arr[i]){
-                    s.pop();
-                }
-                if(s.isEmpty())ans[i] = -1;
-                else ans[i] = s.peek();
+        for(int i=n-1; i>=0; i--){
+            if(st.isEmpty())ans[i] = -1;
+            else if(st.size() > 0 && st.peek() > arr[i]){
+                ans[i] = st.peek();
             }
-            else ans[i] = s.peek();
-            
-            s.push(arr[i]);
+            else{
+                
+                while(st.size() > 0 && st.peek() <= arr[i]){
+                    st.pop();
+                }
+                
+                if(st.isEmpty())ans[i] = -1;
+                else if(st.size() > 0 && st.peek() > arr[i]){
+                    ans[i] = st.peek();
+                }
+                
+            }
+            st.push(arr[i]);
         }
         
         return ans;
