@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for Java
 
 import java.io.*;
@@ -23,7 +23,8 @@ class GFG{
             t--;
         }
     } 
-} // } Driver Code Ends
+} 
+// } Driver Code Ends
 
 
 //User function Template for Java
@@ -35,27 +36,46 @@ class Solution
     int celebrity(int M[][], int n)
     {
     	// code here 
-    	Stack<Integer> s = new Stack<>();
-    	for(int i = 0; i<n; i++)s.push(i);
+    	Stack<Integer> st = new Stack<Integer>();
     	
-    	while(s.size() != 1){
-    	    int a = s.peek();
-    	    s.pop();
-    	    int b  = s.peek();
-    	    s.pop();
+    	for(int i=0; i<n; i++){
+    	    st.push(i);
+    	}
+    	
+    	while(st.size() > 1){
+    	    int first = st.peek();
+    	    st.pop();
     	    
-    	    if(M[a][b] == 1)s.push(b);
-    	    else s.push(a);
+    	    int second = st.peek();
+    	    st.pop();
+    	    
+    	    
+    	    if(knows(first, second, M)){
+    	        st.push(second);
+    	    }
+    	    else{
+    	        st.push(first);
+    	    }
     	}
     	
-    	int ans = s.peek();
-    	
-    	for(int i = 0; i<n; i++){
-    	    if(i == ans)continue;
-    	    if(M[ans][i] == 1) return -1;
-    	    if(M[i][ans] == 0) return -1;
-    	}
-    	
-    	return ans;
+        //single element instact is potential celebrity;
+        int element = st.peek();
+        
+        boolean rowCheck = true, colCheck = true;
+        
+        for(int i=0; i<n; i++){
+            if(i == element)continue;
+            
+            if(M[element][i] == 1)rowCheck = false;
+            
+            if(M[i][element] == 0)colCheck = false;
+        }
+        
+        return rowCheck && colCheck ? element : -1;
+    }
+    
+    boolean knows(int a, int b, int Mat[][]){
+        if(Mat[a][b] == 1)return true;
+        return false;
     }
 }
