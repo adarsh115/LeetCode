@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for JAVA
 
 import java.util.LinkedList; 
@@ -105,7 +105,8 @@ public class Tree {
                 t--;   
         }
     }
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 //User function Template for Java
@@ -123,50 +124,52 @@ class Node{
 }
 */
 
+class pair{
+    int dist;
+    Node node;
+    
+    pair(int d, Node n){
+        this.dist = d;
+        this.node = n;
+    }
+}
 class Solution
 {
     //Function to return a list of nodes visible from the top view 
     //from left to right in Binary Tree.
-    static class Pair
-    {
-           int hd;
-           Node node;
-           public Pair(int h,Node n)
-           {
-               hd=h;
-               node=n;
-           }
-    }
     static ArrayList<Integer> topView(Node root)
     {
         // add your code
-        ArrayList<Integer> top = new ArrayList<>();
-        if(root == null)return top;
+        TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
+        Queue<pair> q = new LinkedList<>();
+        q.add(new pair(0, root));
         
-        Queue< Pair > q = new LinkedList<Pair>();
-        
-        Pair p = new Pair(0, root);
-        q.add(p);
-        
-        Map<Integer, Integer> map = new TreeMap<>();
-        map.put(0, root.data);
-        
-        while(!q.isEmpty()){
-            Pair temp = q.remove();
+        while(q.size() > 0){
+            pair temp = q.remove();
             
-            int hd = temp.hd;
+            int distance = temp.dist;
             Node node = temp.node;
             
-            if(!map.containsKey(hd))map.put(hd, node.data);
+            if(!map.containsKey(distance)){
+                map.put(distance, node.data);
+            }
             
-            if(node.left != null)q.add(new Pair(hd-1, node.left));
-            if(node.right != null)q.add(new Pair(hd+1, node.right));
+            if(node.left != null)q.add(new pair(distance-1, node.left));
+            if(node.right != null)q.add(new pair(distance+1, node.right));
         }
         
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            top.add(entry.getValue());
-        }
         
-        return top;
+        return new ArrayList<Integer>(map.values());
     }
+    
+    // public static void solve(Node root, TreeMap<Integer, Integer> map, int plane){
+    //     if(root == null)return;
+        
+    //     if(!map.containsKey(plane)){
+    //         map.put(plane, root.data);
+    //     }
+        
+    //     solve(root.left, map, plane-1);
+    //     solve(root.right, map, plane+1);
+    // }
 }
