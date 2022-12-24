@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for Java
 
 
@@ -107,6 +107,7 @@ class GfG {
 	}
 }
 
+
 // } Driver Code Ends
 
 
@@ -129,29 +130,24 @@ class Node
 
 class Solution{
     //Function to return list containing elements of right view of binary tree.
-        void levelOrder(Node root, Queue<Integer> q, int level){
+    ArrayList<Integer> rightView(Node node) {
+        //add code here.
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        solve(node, map, 0);
+        
+        return new ArrayList<Integer>(map.values()); 
+    }
+    
+    public void solve(Node root, HashMap<Integer, Integer> map, int level){
         if(root == null)return;
         
-        if(level == q.size())q.add(root.data);
-        levelOrder(root.right, q, level+1);
-        levelOrder(root.left, q, level+1);
-    }
-    //Function to return list containing elements of left view of binary tree.
-    ArrayList<Integer> rightView(Node root)
-    {
-      // Your code here
-      ArrayList<Integer> rightView = new ArrayList<>();
-      
-      if(root == null)return rightView;
-      Queue<Integer> q = new LinkedList<>();
-      
-      levelOrder(root, q, 0);
-      
-      while(!q.isEmpty()){
-          rightView.add(q.remove());
-      }
-      
-      return rightView;
+        if(map.size() == level)map.put(level, root.data);
+        
+        solve(root.right, map, level+1);
+        solve(root.left, map, level+1);
     }
 }
+
+
 
