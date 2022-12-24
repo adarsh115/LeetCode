@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for Java
 
 
@@ -110,57 +110,46 @@ class GfG {
 	}
 }
 
+
 // } Driver Code Ends
 
 
 //User function Template for Java
 
-
+class Pair{
+    Node node;
+    int dist;
+    
+    Pair(Node n, int d){
+        this.node = n;
+        this.dist = d;
+    }
+}
 class Solution
 {
     //Function to return a list containing the bottom view of the given tree.
-   
+    public ArrayList <Integer> bottomView(Node root)
+    {
         // Code here
-    static class Pair
-    {
-       int hd;
-       Node node;
-       public Pair(int h,Node n)
-       {
-           hd=h;
-           node=n;
-       }
-    }
-    static ArrayList<Integer> bottomView(Node root)
-    {
-        // add your code
-        ArrayList<Integer> bottom = new ArrayList<>();
-        if(root == null)return bottom;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        Queue<Pair> q = new LinkedList<>();
         
-        Queue< Pair > q = new LinkedList<Pair>();
-        
-        Pair p = new Pair(0, root);
-        q.add(p);
-        
-        Map<Integer, Integer> map = new TreeMap<>();
-        map.put(0, root.data);
+        q.add(new Pair(root, 0));
         
         while(!q.isEmpty()){
             Pair temp = q.remove();
             
-            int hd = temp.hd;
-            Node node = temp.node;
+            Node currentNode = temp.node;
+            int distance = temp.dist;
             
-            map.put(hd, node.data);
+            map.put(distance, currentNode.data);
             
-            if(node.left != null)q.add(new Pair(hd-1, node.left));
-            if(node.right != null)q.add(new Pair(hd+1, node.right));
+            if(currentNode.left != null)
+                q.add(new Pair(currentNode.left, distance-1));
+            if(currentNode.right != null)
+                q.add(new Pair(currentNode.right, distance+1));
         }
         
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            bottom.add(entry.getValue());
-        }
-        
-        return bottom;
+        return new ArrayList<Integer>(map.values());
     }
 }
