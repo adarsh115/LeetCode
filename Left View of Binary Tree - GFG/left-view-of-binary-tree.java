@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.LinkedList; 
 import java.util.Queue; 
 import java.io.*;
@@ -102,6 +102,7 @@ class GfG {
         }
     }
 }
+
 // } Driver Code Ends
 
 
@@ -121,28 +122,23 @@ class Node
 }*/
 class Tree
 {
-    void levelOrder(Node root, Queue<Integer> q, int level){
-        if(root == null)return;
-        
-        if(level == q.size())q.add(root.data);
-        levelOrder(root.left, q, level+1);
-        levelOrder(root.right, q, level+1);
-    }
     //Function to return list containing elements of left view of binary tree.
     ArrayList<Integer> leftView(Node root)
     {
       // Your code here
-      ArrayList<Integer> leftView = new ArrayList<>();
+      ArrayList<Integer> list = new ArrayList<>();
       
-      if(root == null)return leftView;
-      Queue<Integer> q = new LinkedList<>();
+      solve(root, 0, list);
       
-      levelOrder(root, q, 0);
-      
-      while(!q.isEmpty()){
-          leftView.add(q.remove());
-      }
-      
-      return leftView;
+      return list;
+    }
+    
+    public void solve(Node root, int level, ArrayList<Integer> list){
+        if(root == null)return;
+        
+        if(list.size() == level)list.add(root.data);
+        
+        solve(root.left, level+1, list);
+        solve(root.right, level+1, list);
     }
 }
