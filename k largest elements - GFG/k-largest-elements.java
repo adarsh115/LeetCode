@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 import java.io.*;
 
@@ -26,28 +26,32 @@ public class Main {
         }
     }
 }
+
 // } Driver Code Ends
 
 
 class Solution {
     int[] kLargest(int[] arr, int n, int k) {
         // code here
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         
-        for (int i = 0; i < n; i++) {
-          maxHeap.add(arr[i]);
-          if (maxHeap.size() > k) maxHeap.poll();
+        for(int num : arr){
+            pq.add(num);
+            
+            if(pq.size() > k){
+                pq.remove();
+            }
         }
         
-        int ans[] = new int[maxHeap.size()];
-        int i = maxHeap.size()-1;
+        int ans[] = new int[pq.size()];
+        int i=ans.length-1;
+        while(!pq.isEmpty()){
+            int item = pq.remove();
+            
+            ans[i--] = item;
+        }
         
-        while(maxHeap.size() > 0){
-            int element = maxHeap.peek();
-            maxHeap.poll();
-            ans[i--] = element;
-        } 
-        
+        // Collections.reverse(Arrays.asList(ans));
         return ans;
     }
 }
